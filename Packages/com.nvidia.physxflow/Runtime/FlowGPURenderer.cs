@@ -15,14 +15,23 @@ namespace UnityPhysXFlow
         
         [Header("Rendering")]
         [SerializeField] private RenderTexture outputTexture;
-        [SerializeField, Range(512, 2048)] private int renderWidth = 1024;
-        [SerializeField, Range(512, 2048)] private int renderHeight = 1024;
+        [SerializeField, Range(512, 2048)] private int renderWidth = 768;  // Reduced for performance
+        [SerializeField, Range(512, 2048)] private int renderHeight = 768;
+        
+        [Header("Performance")]
+        [SerializeField, Range(1, 10)] 
+        [Tooltip("Update GPU textures every N frames (higher = faster, less smooth)")]
+        private int updateInterval = 2;
+        
+        [SerializeField] 
+        [Tooltip("Use async GPU readback (experimental)")]
+        private bool useAsyncUpload = false;
         
         [Header("Visual Settings")]
         [SerializeField] private Color volumeColor = new Color(0.8f, 0.9f, 1.0f, 1.0f);
         [SerializeField, Range(0.1f, 10f)] private float densityScale = 2.0f;
-        [SerializeField, Range(0.01f, 1f)] private float stepSize = 0.1f;
-        [SerializeField, Range(16, 256)] private int maxSteps = 128;
+        [SerializeField, Range(0.01f, 1f)] private float stepSize = 0.15f;  // Increased for performance
+        [SerializeField, Range(16, 256)] private int maxSteps = 64;  // Reduced for performance
         
         [Header("Lighting")]
         [SerializeField, Range(0f, 2f)] private float lightIntensity = 1.0f;
@@ -30,12 +39,18 @@ namespace UnityPhysXFlow
         
         [Header("Debug")]
         [SerializeField] private bool showOutput = true;
+        [SerializeField] private bool showStats = false;
         
         private FlowGrid flowGrid;
         private Texture3D densityTexture;
         private Texture3D velocityTexture;
         private int kernelHandle;
         private Material displayMaterial;
+        private int frameCounter = 0;
+        
+        // Performance tracking
+        private float lastUploadTime = 0f;
+        private float lastRenderTime = 0f;
         
         private void Start()
         {
@@ -98,11 +113,27 @@ namespace UnityPhysXFlow
         {
             if (rayMarchShader == null || densityTexture == null) return;
             
-            // Upload density and velocity data to GPU
-            UploadDataToGPU();
+            frameCounter++;
             
-            // Execute compute shader
+            // Upload data at specified interval for performance
+            if (frameCounter >= updateInterval)
+            {
+                frameCounter = 0;
+                
+                float uploadStart = Time.realtimeSinceStartup;
+                UploadDataToGPU();
+                lastUploadTime = (Time.realtimeSinceStartup - uploadStart) * 1000f;
+            }
+            
+            // Always render (uses last uploaded data)
+            float renderStart = Time.realtimeSinceStartup;
             RenderVolume();
+            lastRenderTime = (Time.realtimeSinceStartup - renderStart) * 1000f;
+            
+            if (showStats)
+            {
+                Debug.Log($"GPU Renderer: Upload={lastUploadTime:F2}ms, Render={lastRenderTime:F2}ms");
+            }
         }
         
         private void UploadDataToGPU()

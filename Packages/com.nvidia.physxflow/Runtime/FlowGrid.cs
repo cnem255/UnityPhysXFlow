@@ -9,14 +9,14 @@ namespace UnityPhysXFlow
     public class FlowGrid : MonoBehaviour
     {
         [Header("Grid Parameters")]
-        [Tooltip("Grid resolution in X")]
-        public int sizeX = 64;
+        [Tooltip("Grid resolution in X (32=fast, 48=balanced, 64=detailed)")]
+        public int sizeX = 48;
 
         [Tooltip("Grid resolution in Y")]
-        public int sizeY = 64;
+        public int sizeY = 48;
 
         [Tooltip("Grid resolution in Z")]
-        public int sizeZ = 64;
+        public int sizeZ = 48;
 
         [Tooltip("Cell size in world units")]
         [Range(0.01f, 1f)]
