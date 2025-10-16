@@ -23,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Thread-safe native state management
 - Main-thread event dispatch system
 - Profiler event forwarding from Flow to Unity
+- **✨ Automatic Flow DLL installation** - No manual setup required!
+  - DLLs (`nvflow.dll`, `nvflowext.dll`) included in package
+  - Auto-install to Unity Editor directory on package import
+  - Auto-copy to build output directory when building
+  - Manual control via `Tools > PhysX Flow` menu
+  - Verification utility to check DLL status
 
 ### API
 - `UnityPhysXFlow.Init()` - Initialize Flow bridge
@@ -46,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Known Issues
 - Simulation uses placeholder data (actual Flow integration in progress)
 - Windows x64 only (cross-platform support planned)
-- Requires manual DLL deployment
+- ~~Requires manual DLL deployment~~ **FIXED in 1.0.0** - DLLs now install automatically!
 
 ## [Unreleased]
 

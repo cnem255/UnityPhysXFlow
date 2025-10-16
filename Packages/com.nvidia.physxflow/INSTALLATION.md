@@ -2,13 +2,11 @@
 
 ## Overview
 
-UnityPhysXFlow can be installed via Unity Package Manager (UPM) using Git, providing automatic updates and easy integration.
+UnityPhysXFlow can be installed via Unity Package Manager (UPM) using Git. **Flow runtime DLLs are automatically installed** - no manual setup required!
 
 ---
 
-## Method 1: Install via Git URL (Recommended)
-
-This method allows automatic updates through Unity Package Manager.
+## ✨ Quick Install (Recommended)
 
 ### Steps
 
@@ -21,105 +19,78 @@ This method allows automatic updates through Unity Package Manager.
 
 3. **Enter Package URL**
    ```
-   https://github.com/YOUR-USERNAME/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow
+   https://github.com/cnem255/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow
    ```
-   Replace `YOUR-USERNAME` with your GitHub username
 
 4. **Click Add**
    - Unity will download and install the package
    - Wait for compilation to complete
+   - **Flow DLLs install automatically!** ✅
 
-5. **Install Flow Runtime DLLs** (See below)
-
-### Updating
-
-When a new version is released:
-1. Open Package Manager
-2. Select "PhysX Flow for Unity"
-3. Click "Update" button when available
+That's it! The package is ready to use.
 
 ---
 
-## Method 2: Install Specific Version
+## 🎉 Automatic DLL Installation
 
-To install a specific version (e.g., v1.0.0):
+**No manual DLL setup required!** The package automatically handles Flow runtime DLLs:
 
-```
-https://github.com/YOUR-USERNAME/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow#v1.0.0
-```
+### What Happens Automatically
 
-The `#v1.0.0` specifies the git tag for that release.
+✅ **On Package Import**:
+- Flow runtime DLLs (`nvflow.dll`, `nvflowext.dll`) are automatically copied to your Unity Editor directory
+- You'll see a console message confirming successful installation
+- Everything is ready for development immediately
 
----
+✅ **On Build**:
+- DLLs are automatically copied to your build output directory
+- Your game will have everything it needs to run
+- Works for both Development and Release builds
 
-## Method 3: Manual Installation
+✅ **On Package Update**:
+- DLLs are automatically updated to match the new version
+- No manual intervention needed
 
-If you don't have Git or prefer manual installation:
+### Verification
 
-### Steps
+To verify DLLs are installed correctly:
 
-1. **Download Package**
-   - Go to [Releases](https://github.com/YOUR-USERNAME/UnityPhysXFlow/releases)
-   - Download `UnityPhysXFlow-X.X.X.zip`
-
-2. **Extract to Packages Folder**
-   ```
-   YourUnityProject/
-   └── Packages/
-       └── com.nvidia.physxflow/    (extracted here)
-   ```
-
-3. **Restart Unity**
-   - Unity will detect and import the package
-
-### Updating Manually
-
-1. Delete `Packages/com.nvidia.physxflow` folder
-2. Download and extract new version
-3. Restart Unity
+1. Go to `Tools > PhysX Flow > Verify DLL Installation`
+2. You'll see the status of each DLL
+3. All should show ✅ Installed
 
 ---
 
-## Installing Flow Runtime DLLs
+## 🛠️ Manual DLL Control (Optional)
 
-**Important**: The package requires PhysX Flow runtime DLLs to function.
+If you need to manually manage DLLs:
 
-### Option A: Download from Releases (Easiest)
+### Reinstall DLLs
+`Tools > PhysX Flow > Install Flow Runtime DLLs`
 
-1. Go to [Releases](https://github.com/YOUR-USERNAME/UnityPhysXFlow/releases)
-2. Download `nvflow.dll` and `nvflowext.dll`
-3. Place them in one of these locations:
+Use this if:
+- Automatic installation failed
+- DLLs were accidentally deleted
+- You want to refresh the installation
 
-   **For Unity Editor (Development)**:
-   ```
-   C:\Program Files\Unity\Hub\Editor\2021.3.XX\Editor\
-   ```
-   (Next to `Unity.exe`)
+### Uninstall DLLs
+`Tools > PhysX Flow > Uninstall Flow Runtime DLLs`
 
-   **For Builds (Standalone Games)**:
-   ```
-   YourUnityProject/Assets/Plugins/x86_64/
-   ```
+Use this to:
+- Remove DLLs from Unity Editor directory
+- Clean up before uninstalling the package
 
-### Option B: Build from Source
+### Verify Installation
+`Tools > PhysX Flow > Verify DLL Installation`
 
-If you need to build the DLLs yourself:
-
-1. Clone the full repository (includes PhysX SDK)
-2. Run `PhysX/flow/build.bat`
-3. Find DLLs at: `PhysX/flow/_build/windows-x86_64/release/`
-4. Copy to Unity as described above
-
-### Option C: Set DLL Path at Runtime
-
-In your Unity scene:
-1. Add `UnityPhysXFlowExample` component
-2. Set `flowDllPath` to the folder containing the DLLs
-3. Example: `C:\Projects\PhysXFlow\bin\`
+Use this to:
+- Check if DLLs are present
+- Diagnose installation issues
+- Confirm version compatibility
 
 ---
 
-## Package Contents
+## 📦 Package Contents
 
 After installation, you'll have:
 
@@ -133,48 +104,78 @@ Packages/com.nvidia.physxflow/
 ├── Editor/                     # Editor scripts
 │   ├── FlowComponentEditors.cs
 │   ├── FlowSetupMenu.cs       # Menu items & wizard
+│   ├── FlowDllInstaller.cs    # Automatic DLL installer ✨
+│   ├── FlowBuildPostProcessor.cs # Build automation ✨
 │   └── *.asmdef
 ├── Shaders/
 │   └── VolumetricFluid.shader # Rendering shader
 ├── Plugins/x86_64/
-│   └── unity_physx_flow.dll   # Native bridge DLL
+│   ├── unity_physx_flow.dll   # Native bridge DLL
+│   ├── nvflow.dll             # Flow runtime DLL ✨
+│   └── nvflowext.dll          # Flow extensions DLL ✨
 └── Documentation~/             # Offline docs
 ```
 
 ---
 
-## Verifying Installation
+## 📝 Installation Methods Comparison
 
-### Check Package Manager
-
-1. Open Package Manager
-2. Look for "PhysX Flow for Unity" in the list
-3. Version should be displayed (e.g., 1.0.0)
-
-### Check Components
-
-1. Create a new GameObject
-2. Click `Add Component`
-3. You should see:
-   - `PhysX Flow > Flow Emitter`
-   - `PhysX Flow > Flow Grid`
-
-### Check Menu Items
-
-Look for:
-- `GameObject > PhysX Flow > ...`
-- `Tools > PhysX Flow > ...`
-
-### Test Initialization
-
-1. Create an empty GameObject
-2. Add `UnityPhysXFlowExample` component
-3. Press Play
-4. Check Console for: `[UnityPhysXFlow] Initialized successfully`
+| Method | DLL Installation | Updates | Best For |
+|--------|------------------|---------|----------|
+| **Git URL** | ✅ Automatic | ✅ One-click | Most users |
+| **Specific Version** | ✅ Automatic | Manual | Stable projects |
+| **Manual/Local** | ✅ Automatic | Manual | Development |
 
 ---
 
-## Troubleshooting
+## 🔄 Updating the Package
+
+### Via Git URL (Recommended)
+
+Unity Package Manager checks for updates periodically:
+
+1. **Check for Updates**
+   - Open Package Manager
+   - Select "PhysX Flow for Unity"
+   - If update available, "Update" button appears
+
+2. **Update**
+   - Click "Update" button
+   - Unity pulls latest version from Git
+   - DLLs update automatically ✅
+
+3. **Review Changes**
+   - Check CHANGELOG.md for changes
+   - Review breaking changes if major version update
+
+### Specific Version Installation
+
+To install a specific version:
+
+```
+https://github.com/cnem255/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow#v1.0.0
+```
+
+The `#v1.0.0` specifies the git tag for that release.
+
+---
+
+## 🔧 Troubleshooting
+
+### "DLL installation failed" Message
+
+**Problem**: Automatic installation couldn't copy DLLs
+
+**Common Causes**:
+- Unity Editor directory requires admin permissions
+- Antivirus blocking file operations
+- Disk permissions issue
+
+**Solutions**:
+1. Run Unity as Administrator and try again
+2. Use manual installation: `Tools > PhysX Flow > Install Flow Runtime DLLs`
+3. Check Windows Event Viewer for access denied errors
+4. Temporarily disable antivirus and retry
 
 ### "Package not found" Error
 
@@ -183,7 +184,7 @@ Look for:
 **Solutions**:
 - Verify Git is installed: `git --version` in terminal
 - Check GitHub URL is correct
-- Ensure repository is public (or you're authenticated)
+- Ensure repository is public
 - Try HTTPS instead of SSH URL
 
 ### "Failed to resolve packages" Error
@@ -195,15 +196,14 @@ Look for:
 - Verify `package.json` exists in the path
 - Try removing `Library/` folder and reimporting
 
-### "Init failed with code -1" Error
+### DLLs Not Working in Build
 
-**Problem**: Flow runtime DLLs not found
+**Problem**: Built game shows "DLL not found" error
 
 **Solutions**:
-- Verify `nvflow.dll` and `nvflowext.dll` are in the correct location
-- Check file permissions (not blocked by Windows)
-- Try setting `flowDllPath` explicitly
-- Check Console for detailed error messages
+- Check Console during build for "Flow DLLs copied" message
+- Verify DLLs are in build output directory (next to .exe)
+- If missing, manually copy from `Packages/com.nvidia.physxflow/Plugins/x86_64/`
 
 ### Components Not Appearing
 
@@ -215,37 +215,70 @@ Look for:
 - Verify assembly definitions are present
 - Try `Assets > Reimport All`
 
----
+### Admin Permissions Required
 
-## Updating the Package
+**Problem**: Installation requires admin rights
 
-### Automatic Updates (Git URL Method)
+**Why**: Unity Editor directory (e.g., `C:\Program Files\Unity\...`) is protected
 
-Unity Package Manager will check for updates periodically:
+**Solutions**:
 
-1. **Check for Updates**
-   - Open Package Manager
-   - Select "PhysX Flow for Unity"
-   - If update available, "Update" button will appear
+**Option 1: Run Unity as Admin** (Recommended)
+- Right-click Unity Hub → Run as Administrator
+- Launch your project
+- Installation will succeed automatically
 
-2. **Update**
-   - Click "Update" button
-   - Unity will pull latest version from Git
-   - Wait for compilation
+**Option 2: Alternative DLL Location**
+- Install DLLs to `Assets/Plugins/x86_64/` instead
+- Go to `Tools > PhysX Flow > Install Flow Runtime DLLs`
+- When prompted, choose custom location
 
-3. **Review Changes**
-   - Check CHANGELOG in package (Documentation~/)
-   - Review breaking changes if major version
-
-### Manual Update Notification
-
-We recommend subscribing to:
-- [GitHub Releases](https://github.com/YOUR-USERNAME/UnityPhysXFlow/releases)
-- [GitHub Watch](https://github.com/YOUR-USERNAME/UnityPhysXFlow) (for notifications)
+**Option 3: Portable Unity**
+- Install Unity to a non-protected location (e.g., `C:\Unity\`)
+- No admin rights needed
 
 ---
 
-## Uninstalling
+## 📚 Advanced: Build Configuration
+
+### Custom Build Scripts
+
+If you have custom build scripts, DLLs are automatically included via `IPostprocessBuildWithReport`.
+
+To customize:
+
+```csharp
+using NvidiaPhysXFlow.Editor;
+
+// Access the build post-processor
+// (Runs automatically, no code needed)
+```
+
+### Excluding DLLs from Builds
+
+If you want to manually manage DLLs in builds:
+
+1. Delete or rename `FlowBuildPostProcessor.cs`
+2. Manually copy DLLs to build output
+
+---
+
+## 🌍 Platform Notes
+
+### Windows
+✅ **Fully Supported**
+- x64 only
+- DLLs automatically managed
+- Works in Editor and builds
+
+### macOS / Linux
+⏳ **Coming Soon**
+- Flow SDK supports these platforms
+- Unity package integration planned for future release
+
+---
+
+## 🗑️ Uninstalling
 
 ### Via Package Manager
 
@@ -254,52 +287,72 @@ We recommend subscribing to:
 3. Click "Remove" button
 4. Confirm removal
 
-### Manual Uninstall
+**Note**: DLLs in Unity Editor directory are **not** automatically removed for safety.
 
-1. Delete `Packages/com.nvidia.physxflow/` folder
-2. Delete Flow DLLs from:
-   - Unity Editor folder (if placed there)
-   - `Assets/Plugins/x86_64/` (if placed there)
-3. Restart Unity
+### Complete Uninstall
 
----
+To remove everything including DLLs:
 
-## Advanced: Local Package Development
-
-For contributing or local development:
-
-### Using Local Path
-
-1. Clone repository locally
-2. In Unity, add package from disk:
-   ```
-   Window > Package Manager > + > Add package from disk...
-   ```
-3. Select `package.json` in `Packages/com.nvidia.physxflow/`
-
-### Making Changes
-
-1. Edit scripts in `Packages/com.nvidia.physxflow/`
-2. Changes reflect immediately in Unity
-3. Commit and push changes
-4. Update version with `update-version.ps1`
+1. Uninstall package via Package Manager
+2. Run `Tools > PhysX Flow > Uninstall Flow Runtime DLLs` (before removing package)
+3. Or manually delete from Unity Editor directory:
+   - `nvflow.dll`
+   - `nvflowext.dll`
 
 ---
 
-## Support
+## ✅ Verifying Installation
 
-- **Issues**: [GitHub Issues](https://github.com/YOUR-USERNAME/UnityPhysXFlow/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR-USERNAME/UnityPhysXFlow/discussions)
-- **Documentation**: [Full Docs](https://github.com/YOUR-USERNAME/UnityPhysXFlow)
+After installation, verify everything works:
+
+### 1. Check Package Manager
+- `Window > Package Manager`
+- Look for "PhysX Flow for Unity"
+- Version should be displayed (e.g., 1.0.0)
+
+### 2. Verify DLLs
+- `Tools > PhysX Flow > Verify DLL Installation`
+- All DLLs should show ✅ Installed
+
+### 3. Check Components
+- Create a new GameObject
+- Click `Add Component`
+- Search for "Flow"
+- You should see:
+  - `PhysX Flow > Flow Emitter`
+  - `PhysX Flow > Flow Grid`
+
+### 4. Check Menu Items
+- `GameObject > PhysX Flow > ...` (scene creation)
+- `Tools > PhysX Flow > ...` (utilities)
+
+### 5. Test Initialization
+1. Create an empty GameObject
+2. Add `UnityPhysXFlowExample` component
+3. Press Play
+4. Check Console for: `[UnityPhysXFlow] Initialized successfully`
+
+If all checks pass, installation is successful! ✅
 
 ---
 
-## Next Steps
+## 🎓 Next Steps
 
 After installation:
-1. Run Setup Wizard: `Tools > PhysX Flow > Setup Wizard`
-2. Follow [Quick Start Guide](README.md)
-3. Check [API Documentation](Documentation~/SIMULATION_API.md)
-4. Explore [Example Scenes](Samples~/BasicFluidScene)
 
-Happy fluid simulating! 🌊
+1. **Run Setup Wizard**: `Tools > PhysX Flow > Setup Wizard`
+2. **Read Quick Start**: See package README.md
+3. **Explore API**: Check Documentation~/API_REFERENCE.md
+4. **Try Examples**: Import samples from Package Manager
+
+---
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/cnem255/UnityPhysXFlow/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/cnem255/UnityPhysXFlow/discussions)
+- **Documentation**: [Full Docs](https://github.com/cnem255/UnityPhysXFlow)
+
+---
+
+**Happy fluid simulating! 🌊**

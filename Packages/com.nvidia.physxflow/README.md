@@ -17,22 +17,32 @@ Real-time fluid simulation powered by NVIDIA PhysX Flow 2.2, integrated directly
 #### Option 1: Unity Package Manager (Recommended)
 1. Open Unity Package Manager (`Window > Package Manager`)
 2. Click `+` → `Add package from git URL`
-3. Enter: `https://github.com/your-username/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow`
+3. Enter: `https://github.com/cnem255/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow`
 4. Click `Add`
+5. **Flow DLLs install automatically!** ✨
 
 #### Option 2: Manual Installation
 1. Clone or download this repository
 2. Copy `Packages/com.nvidia.physxflow` to your Unity project's `Packages` folder
 
-### Required Dependencies
+### ✨ Automatic DLL Installation
 
-Before using PhysX Flow, you need the Flow runtime DLLs:
+**No manual setup required!** The package automatically:
 
-1. Download PhysX Flow SDK DLLs from [releases page](https://github.com/your-username/UnityPhysXFlow/releases)
-2. Copy `nvflow.dll` and `nvflowext.dll` to one of:
-   - Next to Unity Editor executable (development)
-   - `Assets/Plugins/x86_64/` (for builds)
-   - Custom path (set via `flowDllPath` in `UnityPhysXFlowExample`)
+- ✅ **Installs Flow runtime DLLs** to Unity Editor on first import
+- ✅ **Copies DLLs to builds** automatically when you build your game
+- ✅ **Updates DLLs** when package version changes
+
+**Verification**: Check via `Tools > PhysX Flow > Verify DLL Installation`
+
+**Manual Control** (if needed):
+- `Tools > PhysX Flow > Install Flow Runtime DLLs` - Reinstall DLLs
+- `Tools > PhysX Flow > Uninstall Flow Runtime DLLs` - Remove DLLs
+
+The DLLs (`nvflow.dll` and `nvflowext.dll`) are:
+- ✅ Included in the package (no separate download needed)
+- ✅ Automatically copied to Unity Editor directory (for development)
+- ✅ Automatically copied to build output (for distribution)
 
 ### First Scene
 
