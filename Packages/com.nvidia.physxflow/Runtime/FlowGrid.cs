@@ -42,6 +42,8 @@ namespace UnityPhysXFlow
         {
             if (autoCreate)
             {
+                // Ensure Flow is initialized before creating grid
+                UnityPhysXFlow.EnsureInitialized();
                 CreateGrid();
             }
         }
@@ -65,6 +67,13 @@ namespace UnityPhysXFlow
         public void CreateGrid()
         {
             if (_gridHandle >= 0) return; // Already created
+
+            // Check if Flow is initialized
+            if (!UnityPhysXFlow.IsInitialized)
+            {
+                Debug.LogError("[FlowGrid] Cannot create grid: Flow not initialized. Call UnityPhysXFlow.Init() first.");
+                return;
+            }
 
             _gridHandle = UnityPhysXFlow.CreateGrid(sizeX, sizeY, sizeZ, cellSize);
             if (_gridHandle < 0)

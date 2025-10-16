@@ -31,6 +31,8 @@ namespace UnityPhysXFlow
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         private static extern void Upf_Shutdown();
 
+        private static bool _isInitialized = false;
+
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         private static extern void Upf_SetDllDirectoryW(string path);
@@ -64,6 +66,24 @@ namespace UnityPhysXFlow
         private static EventCallback _cb;
         private static GCHandle _gcThis;
 
+        /// <summary>
+        /// Check if Flow system is initialized
+        /// </summary>
+        public static bool IsInitialized => _isInitialized;
+
+        /// <summary>
+        /// Auto-initialize on application start
+        /// </summary>
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void AutoInitialize()
+        {
+            if (!_isInitialized)
+            {
+                Debug.Log("[UnityPhysXFlow] Auto-initializing...");
+                EnsureInitialized();
+            }
+        }
+
         public static void SetDllDirectory(string path)
         {
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
@@ -73,6 +93,12 @@ namespace UnityPhysXFlow
 
         public static int Init(Action<int, string> onEvent)
         {
+            if (_isInitialized)
+            {
+                Debug.LogWarning("[UnityPhysXFlow] Already initialized");
+                return 0;
+            }
+
             _cb = (evt, payload, ud) =>
             {
                 // Unity main thread dispatch if needed
@@ -80,7 +106,30 @@ namespace UnityPhysXFlow
             };
             _gcThis = GCHandle.Alloc(_cb);
             Upf_RegisterCallback(_cb, IntPtr.Zero);
-            return Upf_Init();
+            
+            int result = Upf_Init();
+            if (result == 0)
+            {
+                _isInitialized = true;
+                Debug.Log("[UnityPhysXFlow] Initialized successfully");
+            }
+            else
+            {
+                Debug.LogError($"[UnityPhysXFlow] Initialization failed with code {result}");
+            }
+            
+            return result;
+        }
+
+        /// <summary>
+        /// Initialize with default event handler if not already initialized
+        /// </summary>
+        public static void EnsureInitialized()
+        {
+            if (!_isInitialized)
+            {
+                Init((evt, payload) => Debug.Log($"[UnityPhysXFlow] Event {evt}: {payload}"));
+            }
         }
 
         public static void Step(float dt) => Upf_Step(dt);
@@ -90,6 +139,8 @@ namespace UnityPhysXFlow
             Upf_Shutdown();
             if (_gcThis.IsAllocated) _gcThis.Free();
             _cb = null;
+            _isInitialized = false;
+            Debug.Log("[UnityPhysXFlow] Shutdown complete");
         }
 
         // --- Simulation API ---

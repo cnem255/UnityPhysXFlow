@@ -26,6 +26,8 @@ namespace UnityPhysXFlow
         {
             if (autoCreate)
             {
+                // Ensure Flow is initialized before creating emitter
+                UnityPhysXFlow.EnsureInitialized();
                 CreateEmitter();
             }
         }
@@ -42,6 +44,13 @@ namespace UnityPhysXFlow
         public void CreateEmitter()
         {
             if (_emitterHandle >= 0) return; // Already created
+
+            // Check if Flow is initialized
+            if (!UnityPhysXFlow.IsInitialized)
+            {
+                Debug.LogError("[FlowEmitter] Cannot create emitter: Flow not initialized. Call UnityPhysXFlow.Init() first.");
+                return;
+            }
 
             _emitterHandle = UnityPhysXFlow.CreateEmitter(transform.position, radius, density);
             if (_emitterHandle < 0)
