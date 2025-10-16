@@ -1,0 +1,103 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Asset meta files (should be tracked)
+# Uncomment if you don't want to track .meta files
+# *.meta
+
+# Visual Studio / Rider / VS Code cache/options
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity3D generated files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Build artifacts
+native/_build/
+native/build/
+*.dll
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.obj
+*.exe
+*.out
+*.app
+
+# Exceptions: Keep package DLLs if committed
+!Packages/com.nvidia.physxflow/Plugins/**/*.dll
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+
+# PhysX build artifacts (keep SDK source)
+PhysX/physx/bin/
+PhysX/physx/compiler/
+PhysX/blast/bin/
+PhysX/blast/compiler/
+PhysX/flow/_build/
+PhysX/flow/bin/
+PhysX/flow/compiler/
+
+# Documentation builds (if any)
+_site/
+.sass-cache/
+.jekyll-metadata
+
+# Node (if using any JS tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python (if using any Python tooling)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+
+# Rider
+.idea.meta
+
+# Backup files
+*.bak
+*.orig
+*~
