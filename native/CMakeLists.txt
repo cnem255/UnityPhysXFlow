@@ -12,6 +12,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# Enable OpenMP for multi-threading
+find_package(OpenMP)
+if(OpenMP_CXX_FOUND)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    message(STATUS "OpenMP found - multi-threading enabled")
+else()
+    message(WARNING "OpenMP not found - simulation will be single-threaded")
+endif()
+
 # Locate PhysX/Flow SDK root
 set(PHYSX_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../PhysX" CACHE PATH "Path to PhysX 5.6.1 root (contains flow/, physx/, blast/)")
 
@@ -38,6 +47,11 @@ target_include_directories(unity_physx_flow
 target_compile_definitions(unity_physx_flow
     PRIVATE FLOW_UNITY_BRIDGE_EXPORTS
 )
+
+# Link OpenMP if available
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(unity_physx_flow PRIVATE OpenMP::OpenMP_CXX)
+endif()
 
 # Windows-specific export macro
 if (WIN32)

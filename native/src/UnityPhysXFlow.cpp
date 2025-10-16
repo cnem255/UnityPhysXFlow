@@ -3,6 +3,10 @@
 #define FLOW_UNITY_BRIDGE_EXPORTS 1
 #endif
 
+#ifdef _WIN32
+#define NOMINMAX  // Prevent Windows min/max macros
+#endif
+
 #include "../include/UnityPhysXFlow.h"
 
 #include <mutex>
@@ -10,6 +14,10 @@
 #include <cstdio>
 #include <cmath>
 #include <algorithm>
+
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 // NvFlow SDK
 #include "NvFlowContext.h"
@@ -37,6 +45,9 @@ struct GridState {
     float cellSize;
     std::vector<float> densityData;
     std::vector<float> velocityData; // 3 floats per cell (vx, vy, vz)
+    // Temp buffers for multi-threaded simulation
+    std::vector<float> densityTemp;
+    std::vector<float> velocityTemp;
     // Flow-specific grid data would go here
 };
 
@@ -248,8 +259,11 @@ UPF_API int32_t Upf_CreateGrid(int sizeX, int sizeY, int sizeZ, float cellSize)
     g.handle = handle;
     g.sizeX = sizeX; g.sizeY = sizeY; g.sizeZ = sizeZ;
     g.cellSize = cellSize;
-    g.densityData.resize(sizeX * sizeY * sizeZ, 0.0f);
-    g.velocityData.resize(sizeX * sizeY * sizeZ * 3, 0.0f); // 3 components per cell
+    size_t numCells = sizeX * sizeY * sizeZ;
+    g.densityData.resize(numCells, 0.0f);
+    g.velocityData.resize(numCells * 3, 0.0f); // 3 components per cell
+    g.densityTemp.resize(numCells, 0.0f);
+    g.velocityTemp.resize(numCells * 3, 0.0f);
 
     // TODO: Create actual Flow grid using NvFlowExt or Context API
 
@@ -272,64 +286,181 @@ UPF_API void Upf_StepGrid(int32_t gridHandle, float dt)
     std::lock_guard<std::mutex> lock(g_state.mtx);
     auto it = g_state.grids.find(gridHandle);
     if (it == g_state.grids.end()) return;
-    if (dt <= 0.f) return;
+    if (dt <= 0.f) dt = 0.016f;
 
     GridState& grid = it->second;
+    const int sX = grid.sizeX, sY = grid.sizeY, sZ = grid.sizeZ;
+    const float cs = grid.cellSize;
     
-    // Grid world bounds (centered at origin for simplicity)
-    float halfX = grid.sizeX * grid.cellSize * 0.5f;
-    float halfY = grid.sizeY * grid.cellSize * 0.5f;
-    float halfZ = grid.sizeZ * grid.cellSize * 0.5f;
+    const float halfX = sX * cs * 0.5f;
+    const float halfY = sY * cs * 0.5f;
+    const float halfZ = sZ * cs * 0.5f;
     
-    // Clear density  
-    std::fill(grid.densityData.begin(), grid.densityData.end(), 0.0f);
+    // Improved simulation parameters for continuous motion
+    const float buoyancy = 5.0f;           // Stronger upward force (increased)
+    const float dissipation = 0.99f;       // Slower dissipation to maintain density
+    const float velocityDamping = 0.995f;  // Minimal damping for continuous flow
+    const float emitterStrength = 5.0f;    // Stronger continuous emission
+    const float emitterVelocity = 8.0f;    // Strong initial velocity impulse
+    const float densityThreshold = 0.001f; // Clear very low density
     
-    // Add contribution from each emitter
+    dt = std::min(dt, 0.033f);
+    
+    // Step 1: Add emitter sources (PARALLELIZED)
     for (const auto& pair : g_state.emitters) {
         const EmitterState& emitter = pair.second;
         
-        // Convert emitter world position to grid space
-        float emitterGridX = (emitter.x + halfX) / grid.cellSize;
-        float emitterGridY = (emitter.y + halfY) / grid.cellSize;
-        float emitterGridZ = (emitter.z + halfZ) / grid.cellSize;
-        float radiusInCells = emitter.radius / grid.cellSize;
+        float emitterGridX = (emitter.x + halfX) / cs;
+        float emitterGridY = (emitter.y + halfY) / cs;
+        float emitterGridZ = (emitter.z + halfZ) / cs;
+        float radiusInCells = emitter.radius / cs;
         
-        // Emit fluid in sphere around emitter
-        for (int z = 0; z < grid.sizeZ; z++) {
-            for (int y = 0; y < grid.sizeY; y++) {
-                for (int x = 0; x < grid.sizeX; x++) {
-                    // Distance from emitter
+        int minX = std::max(0, (int)(emitterGridX - radiusInCells) - 1);
+        int maxX = std::min(sX - 1, (int)(emitterGridX + radiusInCells) + 1);
+        int minY = std::max(0, (int)(emitterGridY - radiusInCells) - 1);
+        int maxY = std::min(sY - 1, (int)(emitterGridY + radiusInCells) + 1);
+        int minZ = std::max(0, (int)(emitterGridZ - radiusInCells) - 1);
+        int maxZ = std::min(sZ - 1, (int)(emitterGridZ + radiusInCells) + 1);
+        
+        const float radiusSq = radiusInCells * radiusInCells;
+        
+        // Parallelize the emitter loop
+        #pragma omp parallel for collapse(3) if(maxZ - minZ > 4)
+        for (int z = minZ; z <= maxZ; z++) {
+            for (int y = minY; y <= maxY; y++) {
+                for (int x = minX; x <= maxX; x++) {
                     float dx = x - emitterGridX;
                     float dy = y - emitterGridY;
                     float dz = z - emitterGridZ;
-                    float dist = std::sqrt(dx*dx + dy*dy + dz*dz);
+                    float distSq = dx*dx + dy*dy + dz*dz;
                     
-                    // Add density with smooth falloff
-                    if (dist < radiusInCells) {
-                        int idx = x + y * grid.sizeX + z * grid.sizeX * grid.sizeY;
+                    if (distSq < radiusSq) {
+                        int idx = x + y * sX + z * sX * sY;
+                        float dist = std::sqrt(distSq);
                         float falloff = 1.0f - (dist / radiusInCells);
-                        falloff = falloff * falloff; // Squared falloff for smoother look
-                        grid.densityData[idx] += emitter.density * falloff;
+                        falloff = falloff * falloff * falloff;
+                        
+                        // Add density (use emitterStrength to control rate)
+                        #pragma omp atomic
+                        grid.densityData[idx] += emitter.density * falloff * dt * emitterStrength;
+                        
+                        // Add upward velocity impulse (stronger for continuous motion)
+                        #pragma omp atomic
+                        grid.velocityData[idx * 3 + 1] += falloff * emitterVelocity * dt;
                     }
                 }
             }
         }
     }
     
-    // Simple buoyancy: add upward velocity where there's density
-    for (int z = 0; z < grid.sizeZ; z++) {
-        for (int y = 0; y < grid.sizeY; y++) {
-            for (int x = 0; x < grid.sizeX; x++) {
-                int idx = x + y * grid.sizeX + z * grid.sizeX * grid.sizeY;
-                float density = grid.densityData[idx];
+    // Step 2: Advection (PARALLELIZED)
+    std::copy(grid.densityData.begin(), grid.densityData.end(), grid.densityTemp.begin());
+    std::copy(grid.velocityData.begin(), grid.velocityData.end(), grid.velocityTemp.begin());
+    
+    const float dtOverCs = dt / cs;
+    
+    #pragma omp parallel for collapse(3) if(sZ > 8)
+    for (int z = 2; z < sZ - 2; z++) {
+        for (int y = 2; y < sY - 2; y++) {
+            for (int x = 2; x < sX - 2; x++) {
+                int idx = x + y * sX + z * sX * sY;
+                int vidx = idx * 3;
                 
-                if (density > 0.01f) {
-                    int vidx = idx * 3;
-                    grid.velocityData[vidx + 0] = 0.0f;           // vx
-                    grid.velocityData[vidx + 1] = density * 2.0f;  // vy (upward buoyancy)
-                    grid.velocityData[vidx + 2] = 0.0f;           // vz
+                float px = x - grid.velocityTemp[vidx + 0] * dtOverCs;
+                float py = y - grid.velocityTemp[vidx + 1] * dtOverCs;
+                float pz = z - grid.velocityTemp[vidx + 2] * dtOverCs;
+                
+                px = std::max(1.5f, std::min(px, (float)(sX - 2.5f)));
+                py = std::max(1.5f, std::min(py, (float)(sY - 2.5f)));
+                pz = std::max(1.5f, std::min(pz, (float)(sZ - 2.5f)));
+                
+                int x0 = (int)px, y0 = (int)py, z0 = (int)pz;
+                float fx = px - x0, fy = py - y0, fz = pz - z0;
+                
+                int i000 = x0 + y0 * sX + z0 * sX * sY;
+                int i100 = i000 + 1;
+                int i010 = i000 + sX;
+                int i110 = i000 + sX + 1;
+                int i001 = i000 + sX * sY;
+                int i101 = i001 + 1;
+                int i011 = i001 + sX;
+                int i111 = i001 + sX + 1;
+                
+                // Trilinear interpolation for density
+                float d000 = grid.densityTemp[i000];
+                float d100 = grid.densityTemp[i100];
+                float d010 = grid.densityTemp[i010];
+                float d110 = grid.densityTemp[i110];
+                float d001 = grid.densityTemp[i001];
+                float d101 = grid.densityTemp[i101];
+                float d011 = grid.densityTemp[i011];
+                float d111 = grid.densityTemp[i111];
+                
+                float d00 = d000 + (d100 - d000) * fx;
+                float d10 = d010 + (d110 - d010) * fx;
+                float d01 = d001 + (d101 - d001) * fx;
+                float d11 = d011 + (d111 - d011) * fx;
+                float d0 = d00 + (d10 - d00) * fy;
+                float d1 = d01 + (d11 - d01) * fy;
+                
+                grid.densityData[idx] = (d0 + (d1 - d0) * fz) * dissipation;
+                
+                // Velocity self-advection
+                for (int c = 0; c < 3; c++) {
+                    float v000 = grid.velocityTemp[i000 * 3 + c];
+                    float v100 = grid.velocityTemp[i100 * 3 + c];
+                    float v010 = grid.velocityTemp[i010 * 3 + c];
+                    float v110 = grid.velocityTemp[i110 * 3 + c];
+                    float v001 = grid.velocityTemp[i001 * 3 + c];
+                    float v101 = grid.velocityTemp[i101 * 3 + c];
+                    float v011 = grid.velocityTemp[i011 * 3 + c];
+                    float v111 = grid.velocityTemp[i111 * 3 + c];
+                    
+                    float v00 = v000 + (v100 - v000) * fx;
+                    float v10 = v010 + (v110 - v010) * fx;
+                    float v01 = v001 + (v101 - v001) * fx;
+                    float v11 = v011 + (v111 - v011) * fx;
+                    float v0 = v00 + (v10 - v00) * fy;
+                    float v1 = v01 + (v11 - v01) * fy;
+                    
+                    grid.velocityData[vidx + c] = (v0 + (v1 - v0) * fz) * velocityDamping;
                 }
             }
+        }
+    }
+    
+    // Step 3: Buoyancy (PARALLELIZED)
+    #pragma omp parallel for collapse(3) if(sZ > 8)
+    for (int z = 0; z < sZ; z++) {
+        for (int y = 0; y < sY; y++) {
+            for (int x = 0; x < sX; x++) {
+                int idx = x + y * sX + z * sX * sY;
+                float density = grid.densityData[idx];
+                
+                // Apply buoyancy force (lower threshold for better response)
+                if (density > 0.001f) {
+                    grid.velocityData[idx * 3 + 1] += density * buoyancy * dt;
+                }
+            }
+        }
+    }
+    
+    // Step 4: Clamp and clear low density values (PARALLELIZED)
+    const int numCells = (int)grid.densityData.size();
+    #pragma omp parallel for if(numCells > 1000)
+    for (int i = 0; i < numCells; i++) {
+        // Clamp density
+        if (grid.densityData[i] > 10.0f) {
+            grid.densityData[i] = 10.0f;
+        } else if (grid.densityData[i] < densityThreshold) {
+            grid.densityData[i] = 0.0f;  // Clear very low density to prevent accumulation
+        }
+        
+        // Clamp velocity to prevent instability
+        int vidx = i * 3;
+        for (int c = 0; c < 3; c++) {
+            if (grid.velocityData[vidx + c] > 20.0f) grid.velocityData[vidx + c] = 20.0f;
+            else if (grid.velocityData[vidx + c] < -20.0f) grid.velocityData[vidx + c] = -20.0f;
         }
     }
 }

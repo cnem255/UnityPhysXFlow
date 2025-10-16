@@ -277,5 +277,24 @@ namespace UnityPhysXFlow
             Gizmos.color = new Color(0, 1, 0, 0.2f);
             Gizmos.DrawCube(transform.position, gridWorldSize);
         }
+
+        // Public API for GPU renderer
+        public int GridHandle => _gridHandle;
+        
+        public Vector3Int GridDimensions => new Vector3Int(sizeX, sizeY, sizeZ);
+        
+        public Vector3 GridWorldSize => new Vector3(sizeX * cellSize, sizeY * cellSize, sizeZ * cellSize);
+
+        public float[] GetDensityData()
+        {
+            if (_gridHandle < 0) return null;
+            return UnityPhysXFlow.ExportGridDensity(_gridHandle);
+        }
+
+        public float[] GetVelocityData()
+        {
+            if (_gridHandle < 0) return null;
+            return UnityPhysXFlow.ExportGridVelocity(_gridHandle);
+        }
     }
 }

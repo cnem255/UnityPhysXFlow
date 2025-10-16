@@ -174,6 +174,34 @@ namespace UnityPhysXFlow
             Upf_StepGrid(gridHandle, dt);
         }
 
+        /// <summary>
+        /// Export density data as raw float array
+        /// </summary>
+        public static float[] ExportGridDensity(int gridHandle)
+        {
+            IntPtr dataPtr = Upf_ExportGridDensity(gridHandle, out int sizeX, out int sizeY, out int sizeZ, out int format);
+            if (dataPtr == IntPtr.Zero) return null;
+
+            int totalCells = sizeX * sizeY * sizeZ;
+            float[] densityData = new float[totalCells];
+            Marshal.Copy(dataPtr, densityData, 0, totalCells);
+            return densityData;
+        }
+
+        /// <summary>
+        /// Export velocity data as raw float array (3 floats per cell: vx, vy, vz)
+        /// </summary>
+        public static float[] ExportGridVelocity(int gridHandle)
+        {
+            IntPtr dataPtr = Upf_ExportGridVelocity(gridHandle, out int sizeX, out int sizeY, out int sizeZ, out int format);
+            if (dataPtr == IntPtr.Zero) return null;
+
+            int totalCells = sizeX * sizeY * sizeZ;
+            float[] velocityData = new float[totalCells * 3]; // 3 components per cell
+            Marshal.Copy(dataPtr, velocityData, 0, totalCells * 3);
+            return velocityData;
+        }
+
         public static Texture3D ExportGridDensityAsTexture3D(int gridHandle)
         {
             IntPtr dataPtr = Upf_ExportGridDensity(gridHandle, out int sizeX, out int sizeY, out int sizeZ, out int format);
