@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2025-10-16
+
+### Changed
+- Version bump to 1.1.0
 All notable changes to NVIDIA PhysX Flow for Unity will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -114,3 +118,4 @@ We welcome contributions! See CONTRIBUTING.md for guidelines.
 
 - **Issues**: [GitHub Issues](https://github.com/your-username/UnityPhysXFlow/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-username/UnityPhysXFlow/discussions)
+

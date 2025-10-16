@@ -1,6 +1,6 @@
 {
   "name": "com.nvidia.physxflow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "NVIDIA PhysX Flow for Unity",
   "description": "Native integration of NVIDIA PhysX Flow 2.2 fluid simulation for Unity with volumetric rendering, emitters, and simulation control.",
   "unity": "2021.3",
