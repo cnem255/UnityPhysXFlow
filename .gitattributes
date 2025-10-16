@@ -16,7 +16,9 @@
 *.controller merge=unityyamlmerge eol=lf
 
 # LFS (Large File Storage)
+# Note: Unity Package Manager doesn't support LFS well, so package DLLs are excluded
 *.dll filter=lfs diff=lfs merge=lfs -text
+Packages/com.nvidia.physxflow/Plugins/**/*.dll -filter -diff -merge -text
 *.so filter=lfs diff=lfs merge=lfs -text
 *.dylib filter=lfs diff=lfs merge=lfs -text
 *.pdb filter=lfs diff=lfs merge=lfs -text
