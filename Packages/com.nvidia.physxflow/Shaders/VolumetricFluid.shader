@@ -71,6 +71,9 @@ Shader "PhysXFlow/VolumetricFluid"
                 float4 color = float4(0, 0, 0, 0);
                 float transmittance = 1.0;
 
+                // Use [loop] attribute to prevent automatic unrolling
+                // This is necessary for ray marching with variable iteration counts
+                [loop]
                 for (int step = 0; step < _MaxSteps; step++)
                 {
                     // Check bounds
@@ -94,6 +97,7 @@ Shader "PhysXFlow/VolumetricFluid"
                         color.a += transmittance * alpha;
                         transmittance *= (1.0 - alpha);
 
+                        // Early exit when opaque enough
                         if (transmittance < 0.01)
                             break;
                     }
