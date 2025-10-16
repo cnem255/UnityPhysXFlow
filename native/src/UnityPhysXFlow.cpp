@@ -8,6 +8,8 @@
 #include <mutex>
 #include <string>
 #include <cstdio>
+#include <cmath>
+#include <algorithm>
 
 // NvFlow SDK
 #include "NvFlowContext.h"
@@ -270,12 +272,65 @@ UPF_API void Upf_StepGrid(int32_t gridHandle, float dt)
     std::lock_guard<std::mutex> lock(g_state.mtx);
     auto it = g_state.grids.find(gridHandle);
     if (it == g_state.grids.end()) return;
+    if (dt <= 0.f) return;
 
-    // TODO: Step Flow simulation for specific grid
-
-    // For now, just invoke global step
-    if (dt > 0.f) {
-        // Placeholder: actual Flow simulation step would go here
+    GridState& grid = it->second;
+    
+    // Grid world bounds (centered at origin for simplicity)
+    float halfX = grid.sizeX * grid.cellSize * 0.5f;
+    float halfY = grid.sizeY * grid.cellSize * 0.5f;
+    float halfZ = grid.sizeZ * grid.cellSize * 0.5f;
+    
+    // Clear density  
+    std::fill(grid.densityData.begin(), grid.densityData.end(), 0.0f);
+    
+    // Add contribution from each emitter
+    for (const auto& pair : g_state.emitters) {
+        const EmitterState& emitter = pair.second;
+        
+        // Convert emitter world position to grid space
+        float emitterGridX = (emitter.x + halfX) / grid.cellSize;
+        float emitterGridY = (emitter.y + halfY) / grid.cellSize;
+        float emitterGridZ = (emitter.z + halfZ) / grid.cellSize;
+        float radiusInCells = emitter.radius / grid.cellSize;
+        
+        // Emit fluid in sphere around emitter
+        for (int z = 0; z < grid.sizeZ; z++) {
+            for (int y = 0; y < grid.sizeY; y++) {
+                for (int x = 0; x < grid.sizeX; x++) {
+                    // Distance from emitter
+                    float dx = x - emitterGridX;
+                    float dy = y - emitterGridY;
+                    float dz = z - emitterGridZ;
+                    float dist = std::sqrt(dx*dx + dy*dy + dz*dz);
+                    
+                    // Add density with smooth falloff
+                    if (dist < radiusInCells) {
+                        int idx = x + y * grid.sizeX + z * grid.sizeX * grid.sizeY;
+                        float falloff = 1.0f - (dist / radiusInCells);
+                        falloff = falloff * falloff; // Squared falloff for smoother look
+                        grid.densityData[idx] += emitter.density * falloff;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Simple buoyancy: add upward velocity where there's density
+    for (int z = 0; z < grid.sizeZ; z++) {
+        for (int y = 0; y < grid.sizeY; y++) {
+            for (int x = 0; x < grid.sizeX; x++) {
+                int idx = x + y * grid.sizeX + z * grid.sizeX * grid.sizeY;
+                float density = grid.densityData[idx];
+                
+                if (density > 0.01f) {
+                    int vidx = idx * 3;
+                    grid.velocityData[vidx + 0] = 0.0f;           // vx
+                    grid.velocityData[vidx + 1] = density * 2.0f;  // vy (upward buoyancy)
+                    grid.velocityData[vidx + 2] = 0.0f;           // vz
+                }
+            }
+        }
     }
 }
 
