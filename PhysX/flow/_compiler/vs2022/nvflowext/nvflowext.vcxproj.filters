@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\nvflowext">
+      <UniqueIdentifier>{65B9B879-D1CF-B60F-1A47-4231869C8797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\nvflowext\shaders">
+      <UniqueIdentifier>{5E0BA682-CACD-D90C-137E-68997F7FB2EA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared">
+      <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflowext">
+      <UniqueIdentifier>{92957F5F-7E8E-9EB1-A7C0-833693187EBD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflowext\cpu">
+      <UniqueIdentifier>{6988AF99-5517-3963-FE35-4D5EEAA34909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflowext\opt">
+      <UniqueIdentifier>{74BBAF99-604A-3963-0969-4D5EF5D64909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflowext\shaders">
+      <UniqueIdentifier>{8BC46839-77E9-B7B9-A034-9D498CB8B6D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflowext\vulkan">
+      <UniqueIdentifier>{F27EC566-5EB6-0DFE-67C0-7121D37634F7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\nvflowext\NvFlowExt.h">
+      <Filter>include\nvflowext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflowext\NvFlowLoader.h">
+      <Filter>include\nvflowext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchParams.h">
+      <Filter>include\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchUtils.h">
+      <Filter>include\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowArray.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowArrayBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowBufferVariable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDatabase.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDeepCopy.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDynamicBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowInteropBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowLocationHashTable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowMath.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowPreprocessor.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowReadbackBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowResourceCPU.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowString.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowStringHash.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowTextureVariable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowTimer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowUploadBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\EmitterCommon.h">
+      <Filter>source\nvflowext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\LuidTable.h">
+      <Filter>source\nvflowext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\cpu\CommonCPU.h">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\cpu\DeviceCPU.h">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\CopyParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\DebugVolumeParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\EllipsoidRasterParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\EmitterParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\RadixSortParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\RayMarchParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\ShadowParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateParams.h">
+      <Filter>source\nvflowext\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\vulkan\CommonVulkan.h">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\vulkan\DeviceVulkan.h">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowext\vulkan\LoaderVulkan.h">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\shared\NvFlowPreprocessor.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\shared\NvFlowString.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\DebugVolume.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EllipsoidRaster.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterBox.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterMesh.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterNanoVdb.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterPoint.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterSphere.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterTexture.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\Grid.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\GridOpt.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\GridParams.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\NvFlowExt.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\RadixSort.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\RayMarch.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\Shadow.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\ThreadPool.cpp">
+      <Filter>source\nvflowext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\BufferCPU.cpp">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\ComputePipelineCPU.cpp">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\ContextCPU.cpp">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\DeviceCPU.cpp">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\NvFlowDeviceCPU.cpp">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\TextureCPU.cpp">
+      <Filter>source\nvflowext\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\opt\ContextOpt.cpp">
+      <Filter>source\nvflowext\opt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\BufferVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\ComputePipelineVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\ContextVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\DeviceUtilsVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\DeviceVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\NvFlowDeviceVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\TextureVulkan.cpp">
+      <Filter>source\nvflowext\vulkan</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\CopyFP32toFP16CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\DebugVolume2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\DebugVolumeCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EllipsoidRasterCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EllipsoidRasterSmoothCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterBoxCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshApplyCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshBounds1CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshBounds2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshBounds3CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshClosestCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshGenSortKeysCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshTree1CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterNanoVdb2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterNanoVdbCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint1CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint3CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint4CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointClearDownsampleCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointClearMarkedCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointMarkCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointReduce1CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointReduce2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointReduce3CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointScan1CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointScan2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointScan3CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterSimpleCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterTextureCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSort1CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSort2CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSort3CS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSortBlockCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSortPadCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchBlockCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchBlockIsosurfaceCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchCompositeCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchCopyTextureCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchDebugBoxCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchUpdateColormapCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowCoarseApplyCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowCoarseUpdateCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowNullCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowUpdateCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateDownsampleCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateNullCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolatePrepassCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolatePropagateCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateUpsampleCS.hlsl">
+      <Filter>source\nvflowext\shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarch.hlsli">
+      <Filter>include\nvflowext\shaders</Filter>
+    </None>
+    <None Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchCommon.hlsli">
+      <Filter>include\nvflowext\shaders</Filter>
+    </None>
+    <None Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchIsosurface.hlsli">
+      <Filter>include\nvflowext\shaders</Filter>
+    </None>
+    <None Include="..\..\..\source\nvflowext\shaders\EmitterPointReduceCommon.hlsli">
+      <Filter>source\nvflowext\shaders</Filter>
+    </None>
+    <None Include="..\..\..\source\nvflowext\shaders\EmitterPointScanCommon.hlsli">
+      <Filter>source\nvflowext\shaders</Filter>
+    </None>
+    <None Include="..\..\..\source\nvflowext\shaders\RadixSortCommon.hlsli">
+      <Filter>source\nvflowext\shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+Package: premake
+Version: 5.0.0-beta2+nv1-windows-x86_64
+Maintainers:
+- Peter Thacker
+- Jason Gorski
+Description: premake build script generator
+Repository: https://gitlab-ci-token:DxEKH6pWQGsdDPRgkxnS@gitlab-master.nvidia.com/omniverse/externals/premake-build.git
+SWIPAT NvBug:
+- '3434721'
+Branch: Merge-Request
+Commit: df7ec27dae004c67b4d9519e9c0144dd72c66c16
+Time: Mon Nov 21 20:04:20 2022
+Builder Name: tor-build-win01
+Packman Version: '6.46'
+Packagemaker Version: 1.4.3
+Platform: windows-x86_64
+CI Build Number: 5.0.0-beta2+nv1

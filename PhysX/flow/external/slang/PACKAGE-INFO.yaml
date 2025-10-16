@@ -1,0 +1,15 @@
+Package: slang
+Version: v2025.6.1-windows-x64-release
+Maintainers: slang-dev
+Description: Slang is a shading language that extends HLSL with new capabilities for building modular, extensible, and high-performance real-time shading systems.
+SWIPAT NvBug: https://nvbugswb.nvidia.com/NvBugs5/SWBug.aspx?bugid=2112560
+Repository: https://github.com/shader-slang/slang.git
+Branch: Merge-Request
+Commit : v2025.6.1
+Time : 2025-02-28T07:01:05Z
+Builder Name : SLANGWIN5
+Packman Version : 7.21.1
+Platform : windows-x64-release
+CI Build Number : 145726390
+CI System : GitLab
+CI Version : 16.9.0

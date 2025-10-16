@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{418E0711-2D30-32E7-16EB-453B022CB937}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nvflow</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\_build\windows-x86_64\debug\</OutDir>
+    <IntDir>..\..\..\_build\intermediate\windows-x86_64\nvflow\x86_64\debug\</IntDir>
+    <TargetName>nvflow</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <ExternalIncludePath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\include;..\..\..\external\winsdk\include\winrt;..\..\..\external\winsdk\include\um;..\..\..\external\winsdk\include\ucrt;..\..\..\external\winsdk\include\shared;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\lib\onecore\x64;..\..\..\external\winsdk\lib\ucrt\x64;..\..\..\external\winsdk\lib\um\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64;$(ProjectDir)..\..\..\external\msvc\MSBuild\Current\bin;$(ProjectDir)..\..\..\external\winsdk\bin\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\_build\windows-x86_64\release\</OutDir>
+    <IntDir>..\..\..\_build\intermediate\windows-x86_64\nvflow\x86_64\release\</IntDir>
+    <TargetName>nvflow</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <ExternalIncludePath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\include;..\..\..\external\winsdk\include\winrt;..\..\..\external\winsdk\include\um;..\..\..\external\winsdk\include\ucrt;..\..\..\external\winsdk\include\shared;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\lib\onecore\x64;..\..\..\external\winsdk\lib\ucrt\x64;..\..\..\external\winsdk\lib\um\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64;$(ProjectDir)..\..\..\external\msvc\MSBuild\Current\bin;$(ProjectDir)..\..\..\external\winsdk\bin\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4550;4756;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_DEBUG;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\shared;..\..\..\include\nvflow;..\..\..\include\nvflow\shaders;..\..\..\_generated\windows-x86_64\debug;..\..\..\_generated\windows-x86_64\debug\nvflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>..\..\..\_build\windows-x86_64\debug\nvflow.lib</ImportLibrary>
+    </Link>
+    <PreBuildEvent>
+      <Command>"../../../_build/windows-x86_64/debug/nvflowshadertool.exe" "../../../_generated/windows-x86_64/debug" "../../../source/nvflow/NvFlow.nfproj"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4550;4756;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\shared;..\..\..\include\nvflow;..\..\..\include\nvflow\shaders;..\..\..\_generated\windows-x86_64\release;..\..\..\_generated\windows-x86_64\release\nvflow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>..\..\..\_build\windows-x86_64\release\nvflow.lib</ImportLibrary>
+    </Link>
+    <PreBuildEvent>
+      <Command>"../../../_build/windows-x86_64/release/nvflowshadertool.exe" "../../../_generated/windows-x86_64/release" "../../../source/nvflow/NvFlow.nfproj"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\nvflow\NvFlow.h" />
+    <ClInclude Include="..\..\..\include\nvflow\NvFlowContext.h" />
+    <ClInclude Include="..\..\..\include\nvflow\NvFlowReflect.h" />
+    <ClInclude Include="..\..\..\include\nvflow\NvFlowTypes.h" />
+    <ClInclude Include="..\..\..\include\nvflow\nanovdb\PNanoVDB.h" />
+    <ClInclude Include="..\..\..\include\nvflow\shaders\NvFlowShaderTypes.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowArray.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowArrayBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowBufferVariable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDatabase.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDeepCopy.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDynamicBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowInteropBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowLocationHashTable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowMath.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowPreprocessor.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowReadbackBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowResourceCPU.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowString.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowStringHash.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowTextureVariable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowTimer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowUploadBuffer.h" />
+    <ClInclude Include="..\..\..\source\nvflow\shaders\AdvectionParams.h" />
+    <ClInclude Include="..\..\..\source\nvflow\shaders\PressureParams.h" />
+    <ClInclude Include="..\..\..\source\nvflow\shaders\SparseParams.h" />
+    <ClInclude Include="..\..\..\source\nvflow\shaders\SummaryParams.h" />
+    <ClInclude Include="..\..\..\source\nvflow\shaders\VorticityParams.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\shared\NvFlowPreprocessor.cpp" />
+    <ClCompile Include="..\..\..\shared\NvFlowString.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\Advection.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\NvFlow.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\OpGraph.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\OpRuntime.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\Pressure.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\Sparse.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\SparseNanoVdbExport.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\Summary.cpp" />
+    <ClCompile Include="..\..\..\source\nvflow\Vorticity.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionDensity1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionDensity2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionDownsampleCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionFadeDensityCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionFadeVelocityCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionSimpleCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionVelocity1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionVelocity2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureDivergenceCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureJacobiCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureProlongCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureResidualCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureRestrictCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureSubtractCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearLayers1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearLayers2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearLayers4CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearNew1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearNew2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearNew4CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearTexture1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearTexture2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearTexture4CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4aCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4bCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4cCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4dCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats0CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats3CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbExportDensityCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbExportVelocityCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbPruneLeavesCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseRescale1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseRescale2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseRescale4CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseUploadCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SummaryCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\Vorticity1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\Vorticity2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\nvflow\shaders\NvFlowShader.hlsli" />
+    <None Include="..\..\..\source\nvflow\shaders\AdvectionCommon.hlsli" />
+    <None Include="..\..\..\source\nvflow\shaders\SparseNanoVdbCommon.hlsli" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

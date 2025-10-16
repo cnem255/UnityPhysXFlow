@@ -1,0 +1,15 @@
+Package: dxc
+Version: 1.7.2308-win
+Maintainers: N/A
+Description: N/A
+Repository: ssh://gitlab-master.nvidia.com:12051/omniverse/flow/flow-usd.git
+Branch: release_dxc_package
+Commit: ce25c0dfd2658802f0572c7e9edc55ffb964c548
+Time: Wed Feb 28 10:03:32 2024
+Builder Name: DESKTOP-UCUIBJT
+Packman Version: 7.9.1
+Packagemaker Version: 1.46.1
+CI Build ID: 20126341
+CI Build Number: 106.0+dxc_package.992.ce25c0df.tc
+CI System: Teamcity
+CI Version: 2022.04.5 EAP (build 108852)

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3606C33C-22FF-E18E-4B31-C7133789C19A}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nvflowshadertool</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\_build\windows-x86_64\debug\</OutDir>
+    <IntDir>..\..\..\_build\intermediate\windows-x86_64\nvflowshadertool\x86_64\debug\</IntDir>
+    <TargetName>nvflowshadertool</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <ExternalIncludePath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\include;..\..\..\external\winsdk\include\winrt;..\..\..\external\winsdk\include\um;..\..\..\external\winsdk\include\ucrt;..\..\..\external\winsdk\include\shared;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\lib\onecore\x64;..\..\..\external\winsdk\lib\ucrt\x64;..\..\..\external\winsdk\lib\um\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64;$(ProjectDir)..\..\..\external\msvc\MSBuild\Current\bin;$(ProjectDir)..\..\..\external\winsdk\bin\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\_build\windows-x86_64\release\</OutDir>
+    <IntDir>..\..\..\_build\intermediate\windows-x86_64\nvflowshadertool\x86_64\release\</IntDir>
+    <TargetName>nvflowshadertool</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <ExternalIncludePath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\include;..\..\..\external\winsdk\include\winrt;..\..\..\external\winsdk\include\um;..\..\..\external\winsdk\include\ucrt;..\..\..\external\winsdk\include\shared;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\lib\onecore\x64;..\..\..\external\winsdk\lib\ucrt\x64;..\..\..\external\winsdk\lib\um\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64;$(ProjectDir)..\..\..\external\msvc\MSBuild\Current\bin;$(ProjectDir)..\..\..\external\winsdk\bin\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4550;4756;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_DEBUG;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\shared;..\..\..\include\nvflow;..\..\..\include\nvflow\shaders;..\..\..\_generated\windows-x86_64\debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4550;4756;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\shared;..\..\..\include\nvflow;..\..\..\include\nvflow\shaders;..\..\..\_generated\windows-x86_64\release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\shared\NvFlowArray.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowArrayBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowBufferVariable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDatabase.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDeepCopy.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDynamicBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowInteropBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowLocationHashTable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowMath.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowPreprocessor.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowReadbackBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowResourceCPU.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowString.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowStringHash.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowTextureVariable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowTimer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowUploadBuffer.h" />
+    <ClInclude Include="..\..\..\source\nvflowshadertool\NvFlowProcess.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\shared\NvFlowPreprocessor.cpp" />
+    <ClCompile Include="..\..\..\shared\NvFlowString.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowshadertool\NvFlowProcess.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowshadertool\NvFlowShaderTool.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

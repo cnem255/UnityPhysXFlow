@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\nvflow">
+      <UniqueIdentifier>{546C5060-403A-4466-29CE-B48C153B20CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\nvflow\nanovdb">
+      <UniqueIdentifier>{4B7EB7C6-3778-E018-20E5-76290C7E4685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\nvflow\shaders">
+      <UniqueIdentifier>{4D3DFD56-3937-26A9-22A4-BCB90E3D8C15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shared">
+      <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflow">
+      <UniqueIdentifier>{A1EF777B-0DB0-F3B1-D6EA-3C2F426A388E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflow\shaders">
+      <UniqueIdentifier>{9ABD6560-062A-215B-CF1D-B9B83B4943C3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\nvflow\NvFlow.h">
+      <Filter>include\nvflow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflow\NvFlowContext.h">
+      <Filter>include\nvflow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflow\NvFlowReflect.h">
+      <Filter>include\nvflow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflow\NvFlowTypes.h">
+      <Filter>include\nvflow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflow\nanovdb\PNanoVDB.h">
+      <Filter>include\nvflow\nanovdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\nvflow\shaders\NvFlowShaderTypes.h">
+      <Filter>include\nvflow\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowArray.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowArrayBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowBufferVariable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDatabase.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDeepCopy.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDynamicBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowInteropBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowLocationHashTable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowMath.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowPreprocessor.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowReadbackBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowResourceCPU.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowString.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowStringHash.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowTextureVariable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowTimer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowUploadBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflow\shaders\AdvectionParams.h">
+      <Filter>source\nvflow\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflow\shaders\PressureParams.h">
+      <Filter>source\nvflow\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflow\shaders\SparseParams.h">
+      <Filter>source\nvflow\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflow\shaders\SummaryParams.h">
+      <Filter>source\nvflow\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflow\shaders\VorticityParams.h">
+      <Filter>source\nvflow\shaders</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\shared\NvFlowPreprocessor.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\shared\NvFlowString.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\Advection.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\NvFlow.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\OpGraph.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\OpRuntime.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\Pressure.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\Sparse.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\SparseNanoVdbExport.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\Summary.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflow\Vorticity.cpp">
+      <Filter>source\nvflow</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionDensity1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionDensity2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionDownsampleCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionFadeDensityCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionFadeVelocityCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionSimpleCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionVelocity1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\AdvectionVelocity2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureDivergenceCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureJacobiCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureProlongCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureResidualCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureRestrictCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\PressureSubtractCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearLayers1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearLayers2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearLayers4CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearNew1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearNew2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearNew4CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearTexture1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearTexture2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseClearTexture4CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4aCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4bCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4cCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseInplaceRescale4dCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats0CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbComputeStats3CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbExportDensityCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbExportVelocityCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseNanoVdbPruneLeavesCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseRescale1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseRescale2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseRescale4CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SparseUploadCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\SummaryCS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\Vorticity1CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflow\shaders\Vorticity2CS.hlsl">
+      <Filter>source\nvflow\shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\nvflow\shaders\NvFlowShader.hlsli">
+      <Filter>include\nvflow\shaders</Filter>
+    </None>
+    <None Include="..\..\..\source\nvflow\shaders\AdvectionCommon.hlsli">
+      <Filter>source\nvflow\shaders</Filter>
+    </None>
+    <None Include="..\..\..\source\nvflow\shaders\SparseNanoVdbCommon.hlsli">
+      <Filter>source\nvflow\shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

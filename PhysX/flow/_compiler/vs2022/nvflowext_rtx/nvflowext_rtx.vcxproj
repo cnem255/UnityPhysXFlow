@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8F0501C3-FBC5-7CF9-C400-C6763080C1D5}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nvflowext_rtx</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\_build\windows-x86_64\debug\</OutDir>
+    <IntDir>..\..\..\_build\intermediate\windows-x86_64\nvflowext_rtx\x86_64\debug\</IntDir>
+    <TargetName>nvflowext_rtx</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <ExternalIncludePath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\include;..\..\..\external\winsdk\include\winrt;..\..\..\external\winsdk\include\um;..\..\..\external\winsdk\include\ucrt;..\..\..\external\winsdk\include\shared;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\lib\onecore\x64;..\..\..\external\winsdk\lib\ucrt\x64;..\..\..\external\winsdk\lib\um\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64;$(ProjectDir)..\..\..\external\msvc\MSBuild\Current\bin;$(ProjectDir)..\..\..\external\winsdk\bin\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\_build\windows-x86_64\release\</OutDir>
+    <IntDir>..\..\..\_build\intermediate\windows-x86_64\nvflowext_rtx\x86_64\release\</IntDir>
+    <TargetName>nvflowext_rtx</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <ExternalIncludePath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\include;..\..\..\external\winsdk\include\winrt;..\..\..\external\winsdk\include\um;..\..\..\external\winsdk\include\ucrt;..\..\..\external\winsdk\include\shared;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\lib\onecore\x64;..\..\..\external\winsdk\lib\ucrt\x64;..\..\..\external\winsdk\lib\um\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ProjectDir)..\..\..\external\msvc\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64;$(ProjectDir)..\..\..\external\msvc\MSBuild\Current\bin;$(ProjectDir)..\..\..\external\winsdk\bin\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4550;4756;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_DEBUG;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\shared;..\..\..\include\nvflow;..\..\..\include\nvflow\shaders;..\..\..\_generated\windows-x86_64\debug;..\..\..\_generated\windows-x86_64\debug\nvflowext;..\..\..\include\nvflowext;..\..\..\include\nvflowext\shaders;..\..\..\external\vulkan;..\..\..\external\cuda\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>..\..\..\_build\windows-x86_64\debug\nvflowext_rtx.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4550;4756;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\shared;..\..\..\include\nvflow;..\..\..\include\nvflow\shaders;..\..\..\_generated\windows-x86_64\release;..\..\..\_generated\windows-x86_64\release\nvflowext;..\..\..\include\nvflowext;..\..\..\include\nvflowext\shaders;..\..\..\external\vulkan;..\..\..\external\cuda\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>..\..\..\_build\windows-x86_64\release\nvflowext_rtx.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\nvflowext\NvFlowExt.h" />
+    <ClInclude Include="..\..\..\include\nvflowext\NvFlowLoader.h" />
+    <ClInclude Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchParams.h" />
+    <ClInclude Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchUtils.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowArray.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowArrayBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowBufferVariable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDatabase.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDeepCopy.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowDynamicBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowInteropBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowLocationHashTable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowMath.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowPreprocessor.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowReadbackBuffer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowResourceCPU.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowString.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowStringHash.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowTextureVariable.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowTimer.h" />
+    <ClInclude Include="..\..\..\shared\NvFlowUploadBuffer.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\EmitterCommon.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\LuidTable.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\cpu\CommonCPU.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\cpu\DeviceCPU.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\CopyParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\DebugVolumeParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\EllipsoidRasterParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\EmitterParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\RadixSortParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\RayMarchParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\ShadowParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateParams.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\vulkan\CommonVulkan.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\vulkan\DeviceVulkan.h" />
+    <ClInclude Include="..\..\..\source\nvflowext\vulkan\LoaderVulkan.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\shared\NvFlowPreprocessor.cpp" />
+    <ClCompile Include="..\..\..\shared\NvFlowString.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\DebugVolume.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EllipsoidRaster.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterBox.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterMesh.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterNanoVdb.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterPoint.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterSphere.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\EmitterTexture.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\Grid.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\GridOpt.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\GridParams.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\NvFlowExt.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\RadixSort.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\RayMarch.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\Shadow.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\ThreadPool.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\BufferCPU.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\ComputePipelineCPU.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\ContextCPU.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\DeviceCPU.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\NvFlowDeviceCPU.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\cpu\TextureCPU.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\opt\ContextOpt.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\BufferVulkan.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\ComputePipelineVulkan.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\ContextVulkan.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\DeviceUtilsVulkan.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\DeviceVulkan.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\NvFlowDeviceVulkan.cpp" />
+    <ClCompile Include="..\..\..\source\nvflowext\vulkan\TextureVulkan.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\CopyFP32toFP16CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\DebugVolume2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\DebugVolumeCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EllipsoidRasterCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EllipsoidRasterSmoothCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterBoxCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshApplyCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshBounds1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshBounds2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshBounds3CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshClosestCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshGenSortKeysCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterMeshTree1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterNanoVdb2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterNanoVdbCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint3CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPoint4CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointClearDownsampleCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointClearMarkedCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointMarkCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointReduce1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointReduce2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointReduce3CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointScan1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointScan2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterPointScan3CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterSimpleCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\EmitterTextureCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSort1CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSort2CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSort3CS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSortBlockCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RadixSortPadCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchBlockCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchBlockIsosurfaceCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchCompositeCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchCopyTextureCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchDebugBoxCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\RayMarchUpdateColormapCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowCoarseApplyCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowCoarseUpdateCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowNullCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\ShadowUpdateCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateDownsampleCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateNullCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolatePrepassCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolatePropagateCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\..\..\source\nvflowext\shaders\VoxelInterpolateUpsampleCS.hlsl">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarch.hlsli" />
+    <None Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchCommon.hlsli" />
+    <None Include="..\..\..\include\nvflowext\shaders\NvFlowRayMarchIsosurface.hlsli" />
+    <None Include="..\..\..\source\nvflowext\shaders\EmitterPointReduceCommon.hlsli" />
+    <None Include="..\..\..\source\nvflowext\shaders\EmitterPointScanCommon.hlsli" />
+    <None Include="..\..\..\source\nvflowext\shaders\RadixSortCommon.hlsli" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

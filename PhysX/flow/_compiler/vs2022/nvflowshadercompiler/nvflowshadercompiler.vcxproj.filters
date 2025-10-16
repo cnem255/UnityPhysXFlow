@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="shared">
+      <UniqueIdentifier>{9C5CB11B-88FE-DBF1-71B9-EF455DFA6242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{76FF3A1C-62A1-65F2-4B5C-7946379DEC42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\nvflowshadercompiler">
+      <UniqueIdentifier>{13D5F0DB-7FE2-1EC2-08C9-1AAD74D5EA78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\shared\NvFlowArray.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowArrayBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowBufferVariable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDatabase.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDeepCopy.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowDynamicBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowInteropBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowLocationHashTable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowMath.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowPreprocessor.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowReadbackBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowResourceCPU.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowString.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowStringHash.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowTextureVariable.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowTimer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\shared\NvFlowUploadBuffer.h">
+      <Filter>shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowshadercompiler\ShaderPreprocessor.h">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowshadercompiler\ShaderPreprocessorInternal.h">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowshadercompiler\SlangCompiler.h">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\nvflowshadercompiler\SlangShader.h">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\shared\NvFlowPreprocessor.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\shared\NvFlowString.cpp">
+      <Filter>shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowshadercompiler\NvFlowShaderCompiler.cpp">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowshadercompiler\ShaderPreprocessor.cpp">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowshadercompiler\ShaderPreprocessorHeaderGen.cpp">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\nvflowshadercompiler\SlangCompiler.cpp">
+      <Filter>source\nvflowshadercompiler</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
