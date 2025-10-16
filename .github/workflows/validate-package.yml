@@ -1,0 +1,101 @@
+name: Validate Unity Package
+
+on:
+  pull_request:
+    paths:
+      - 'Packages/com.nvidia.physxflow/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'Packages/com.nvidia.physxflow/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Validate package.json
+      run: |
+        cd Packages/com.nvidia.physxflow
+        
+        # Check package.json exists
+        if [ ! -f package.json ]; then
+          echo "Error: package.json not found"
+          exit 1
+        fi
+        
+        # Validate JSON syntax
+        jq empty package.json || exit 1
+        
+        # Check required fields
+        jq -e '.name' package.json > /dev/null || { echo "Error: Missing 'name' field"; exit 1; }
+        jq -e '.version' package.json > /dev/null || { echo "Error: Missing 'version' field"; exit 1; }
+        jq -e '.displayName' package.json > /dev/null || { echo "Error: Missing 'displayName' field"; exit 1; }
+        jq -e '.unity' package.json > /dev/null || { echo "Error: Missing 'unity' field"; exit 1; }
+        
+        echo "✅ package.json is valid"
+    
+    - name: Check required files
+      run: |
+        cd Packages/com.nvidia.physxflow
+        
+        REQUIRED_FILES=(
+          "README.md"
+          "CHANGELOG.md"
+          "LICENSE.md"
+          "Runtime/UnityPhysXFlow.cs"
+          "Runtime/FlowEmitter.cs"
+          "Runtime/FlowGrid.cs"
+          "Runtime/NvidiaPhysXFlow.Runtime.asmdef"
+          "Editor/FlowComponentEditors.cs"
+          "Editor/FlowSetupMenu.cs"
+          "Editor/NvidiaPhysXFlow.Editor.asmdef"
+          "Shaders/VolumetricFluid.shader"
+        )
+        
+        MISSING=0
+        for file in "${REQUIRED_FILES[@]}"; do
+          if [ ! -f "$file" ]; then
+            echo "❌ Missing required file: $file"
+            MISSING=1
+          else
+            echo "✅ Found: $file"
+          fi
+        done
+        
+        if [ $MISSING -eq 1 ]; then
+          exit 1
+        fi
+        
+        echo "✅ All required files present"
+    
+    - name: Validate assembly definitions
+      run: |
+        cd Packages/com.nvidia.physxflow
+        
+        # Validate Runtime asmdef
+        jq empty Runtime/NvidiaPhysXFlow.Runtime.asmdef || exit 1
+        jq -e '.name' Runtime/NvidiaPhysXFlow.Runtime.asmdef > /dev/null || exit 1
+        
+        # Validate Editor asmdef
+        jq empty Editor/NvidiaPhysXFlow.Editor.asmdef || exit 1
+        jq -e '.name' Editor/NvidiaPhysXFlow.Editor.asmdef > /dev/null || exit 1
+        jq -e '.includePlatforms | contains(["Editor"])' Editor/NvidiaPhysXFlow.Editor.asmdef > /dev/null || exit 1
+        
+        echo "✅ Assembly definitions are valid"
+    
+    - name: Check version consistency
+      run: |
+        PACKAGE_VERSION=$(jq -r '.version' Packages/com.nvidia.physxflow/package.json)
+        
+        # Check if version exists in CHANGELOG
+        if ! grep -q "\[$PACKAGE_VERSION\]" Packages/com.nvidia.physxflow/CHANGELOG.md; then
+          echo "⚠️  Warning: Version $PACKAGE_VERSION not found in CHANGELOG.md"
+          echo "Consider adding a changelog entry for this version"
+        else
+          echo "✅ Version $PACKAGE_VERSION found in CHANGELOG.md"
+        fi

@@ -1,0 +1,107 @@
+name: Auto Update Package Version
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Packages/com.nvidia.physxflow/**'
+      - 'native/**'
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip-version]')"
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Install semver
+      run: npm install -g semver
+    
+    - name: Bump version
+      id: bump
+      run: |
+        # Read current version
+        CURRENT_VERSION=$(jq -r '.version' Packages/com.nvidia.physxflow/package.json)
+        echo "Current version: $CURRENT_VERSION"
+        
+        # Determine bump type
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          BUMP_TYPE="${{ github.event.inputs.version_type }}"
+        else
+          # Auto-detect from commit message
+          if echo "${{ github.event.head_commit.message }}" | grep -qiE '\[major\]|\bbreaking\b'; then
+            BUMP_TYPE="major"
+          elif echo "${{ github.event.head_commit.message }}" | grep -qiE '\[minor\]|\bfeat\b|\bfeature\b'; then
+            BUMP_TYPE="minor"
+          else
+            BUMP_TYPE="patch"
+          fi
+        fi
+        
+        echo "Bump type: $BUMP_TYPE"
+        
+        # Calculate new version
+        NEW_VERSION=$(npx semver -i $BUMP_TYPE $CURRENT_VERSION)
+        echo "New version: $NEW_VERSION"
+        
+        # Update package.json
+        jq --arg version "$NEW_VERSION" '.version = $version' Packages/com.nvidia.physxflow/package.json > temp.json
+        mv temp.json Packages/com.nvidia.physxflow/package.json
+        
+        # Output for next steps
+        echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
+    
+    - name: Update CHANGELOG
+      run: |
+        VERSION="${{ steps.bump.outputs.version }}"
+        DATE=$(date +%Y-%m-%d)
+        
+        # Create new changelog entry
+        cat > temp_changelog.md << EOF
+        # Changelog
+        
+        ## [${VERSION}] - ${DATE}
+        
+        ### Changed
+        - Automatic version bump (${{ steps.bump.outputs.bump_type }})
+        - See commit history for details
+        
+        EOF
+        
+        # Append existing changelog (skip header)
+        tail -n +2 Packages/com.nvidia.physxflow/CHANGELOG.md >> temp_changelog.md
+        mv temp_changelog.md Packages/com.nvidia.physxflow/CHANGELOG.md
+    
+    - name: Commit version bump
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add Packages/com.nvidia.physxflow/package.json
+        git add Packages/com.nvidia.physxflow/CHANGELOG.md
+        git commit -m "chore: bump version to ${{ steps.bump.outputs.version }} [skip-version]"
+        git tag "v${{ steps.bump.outputs.version }}"
+        git push origin main
+        git push origin "v${{ steps.bump.outputs.version }}"

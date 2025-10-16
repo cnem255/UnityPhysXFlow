@@ -2,18 +2,48 @@
 
 A native Windows bridge for NVIDIA Omniverse PhysX Flow 2.2 (PhysX 5.6.1) to integrate real-time fluid simulation into Unity.
 
-This repo provides:
-- `unity_physx_flow.dll` – native C++ plugin that loads `nvflow.dll`/`nvflowext.dll` and exposes a C ABI
-- Unity C# wrapper (`UnityPhysXFlow.cs`) with event callbacks, main-thread dispatch, and simulation API
-- Flow runtime loading via `NvFlowLoader.h` (no static linking required)
-- **Unity Components**: `FlowEmitter`, `FlowGrid` for easy scene setup
-- **Volumetric Rendering**: Built-in shader for rendering Flow grids in Unity
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Unity Version](https://img.shields.io/badge/Unity-2021.3+-blue.svg)](https://unity.com/)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20x64-lightgrey.svg)]()
 
-## Prerequisites
-- **Windows** with Visual Studio Build Tools or VS 2022 (MSVC 17+)
-- **CMake** 3.20+ and **Ninja** (or VS generator) in PATH
-- **PhysX 5.6.1 SDK** checked out at the repo root in `PhysX/` (should contain `physx`, `flow`, `blast`)
-- **Build Flow** once to obtain runtime DLLs: run `PhysX/flow/build.bat` to generate `_build/windows-x86_64/{debug,release}` with `nvflow.dll` and `nvflowext.dll`
+## Features
+
+- 🌊 **Real-time Fluid Simulation**: GPU-accelerated PhysX Flow integration
+- 🎮 **Unity Native Feel**: Components, inspectors, and menu items that blend seamlessly
+- 🎨 **Volumetric Rendering**: Built-in raymarched shader for beautiful fluid visuals
+- 📦 **Easy Installation**: Install via Unity Package Manager with one line
+- 🔄 **Automatic Updates**: Get notified of new versions through UPM
+- 🛠️ **Complete API**: Full control over emitters, grids, and simulation parameters
+
+---
+
+## Quick Install
+
+### For Unity Users (Recommended)
+
+Install via Unity Package Manager:
+
+1. Open Unity Package Manager (`Window > Package Manager`)
+2. Click `+` → `Add package from git URL`
+3. Enter: `https://github.com/YOUR-USERNAME/UnityPhysXFlow.git?path=/Packages/com.nvidia.physxflow`
+4. Install Flow runtime DLLs (see [Installation Guide](Packages/com.nvidia.physxflow/INSTALLATION.md))
+
+See [complete installation guide](Packages/com.nvidia.physxflow/INSTALLATION.md) for details.
+
+### For Developers
+
+Clone and build from source:
+
+```powershell
+git clone --recursive https://github.com/YOUR-USERNAME/UnityPhysXFlow.git
+cd UnityPhysXFlow
+./build.ps1 -Configuration Release
+```
+
+**Prerequisites**:
+- Windows with Visual Studio 2022 (MSVC 17+)
+- CMake 3.20+ and Ninja in PATH
+- PhysX SDK included as submodule
 
 ## Build the Native Plugin
 From the repo root:

@@ -1,0 +1,94 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        lfs: true
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    
+    - name: Setup CMake
+      uses: jwlawson/actions-setup-cmake@v1.14
+      with:
+        cmake-version: '3.27.x'
+    
+    - name: Cache PhysX Flow build
+      uses: actions/cache@v3
+      with:
+        path: PhysX/flow/_build
+        key: ${{ runner.os }}-flow-${{ hashFiles('PhysX/flow/**') }}
+        restore-keys: |
+          ${{ runner.os }}-flow-
+    
+    - name: Build PhysX Flow SDK
+      working-directory: PhysX/flow
+      run: |
+        ./build.bat
+      shell: cmd
+    
+    - name: Build UnityPhysXFlow DLL (Release)
+      run: |
+        ./build.ps1 -Configuration Release
+      shell: pwsh
+    
+    - name: Package Unity Package
+      run: |
+        $packagePath = "Packages/com.nvidia.physxflow"
+        $version = "${{ github.ref_name }}".TrimStart('v')
+        
+        # Update package.json version
+        $packageJson = Get-Content "$packagePath/package.json" | ConvertFrom-Json
+        $packageJson.version = $version
+        $packageJson | ConvertTo-Json -Depth 10 | Set-Content "$packagePath/package.json"
+        
+        # Copy Flow DLLs to package
+        Copy-Item "PhysX/flow/_build/windows-x86_64/release/*.dll" -Destination "$packagePath/Plugins/x86_64/" -Force
+        
+        # Create package archive
+        Compress-Archive -Path $packagePath -DestinationPath "UnityPhysXFlow-$version.zip" -Force
+      shell: pwsh
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          UnityPhysXFlow-*.zip
+          native/_build/Release/unity_physx_flow.dll
+          PhysX/flow/_build/windows-x86_64/release/nvflow.dll
+          PhysX/flow/_build/windows-x86_64/release/nvflowext.dll
+        body: |
+          ## UnityPhysXFlow Release ${{ github.ref_name }}
+          
+          ### Installation via Unity Package Manager
+          Add via Git URL:
+          ```
+          https://github.com/${{ github.repository }}.git?path=/Packages/com.nvidia.physxflow#${{ github.ref_name }}
+          ```
+          
+          ### Manual Installation
+          Download `UnityPhysXFlow-*.zip` and extract to your Unity project's `Packages` folder.
+          
+          ### Required Runtime DLLs
+          Download `nvflow.dll` and `nvflowext.dll` from this release and place them:
+          - Next to Unity Editor executable (development)
+          - In `Assets/Plugins/x86_64/` (for builds)
+          
+          See [documentation](https://github.com/${{ github.repository }}) for full installation instructions.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
